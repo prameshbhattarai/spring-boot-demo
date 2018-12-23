@@ -9,6 +9,8 @@ import com.example.demo.utils.ConvertToDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,20 +50,16 @@ public class AuthorServiceImpl implements AuthorService {
         if(author == null) {
             throw new IllegalArgumentException("Unable to find author");
         }
-
-        List<Book> previousBooks = author.getBooks();
-        bookDtos.stream().map((dto) -> {
-            Book book = new Book();
-            book.setTitle(dto.getTitle());
-            return book;
-        }).forEach((book) -> {
-            previousBooks.add(book);
-        });
-
-        author.setBooks(previousBooks);
+        author.setBooks(bookDtos.stream().map(this::mapToBook).collect(Collectors.toList()));
         Author updated = authorRepository.save(author);
         return ConvertToDto.convertToAuthorDto(updated);
 
+    }
+
+    private Book mapToBook(BookDto bookDto) {
+        Book book = new Book();
+        book.setTitle(bookDto.getTitle());
+        return book;
     }
 
     @Override

@@ -56,7 +56,7 @@ public class AuthorControllerTest {
         MvcResult result = mvc.perform(MockMvcRequestBuilders.post(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtils.getJsonFromObject(authorDto)))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                         .andReturn();
 
@@ -103,7 +103,7 @@ public class AuthorControllerTest {
         MvcResult result = mvc.perform(MockMvcRequestBuilders.post(BASE_URL + "/{authorId}/books", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtils.getJsonFromObject(Arrays.asList(mockBookDto))))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
 

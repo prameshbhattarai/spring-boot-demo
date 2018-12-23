@@ -67,7 +67,7 @@ public class BookControllerTest {
         MvcResult result = mvc.perform(MockMvcRequestBuilders.get(BASE_URL + "/author/{authorId}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtils.getJsonFromObject(bookDtos)))
-                .andDo(print())
+//                .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
 

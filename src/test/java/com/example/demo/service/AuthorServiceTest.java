@@ -79,7 +79,7 @@ public class AuthorServiceTest {
     private Book createBookEnity() {
         Book book = new Book();
         book.setId(1L);
-        book.setTitle("Mock Book");
+        book.setTitle("Mock Book ");
         return book;
     }
 
